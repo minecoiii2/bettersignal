@@ -13,9 +13,10 @@ Example code
 local BetterSignal = require('BetterSignal') -- replace path
 type Signal<T...> = BetterSignal.Signal<T...> -- import type as Signal
 
+-- this signal will only fire numbers
 local signal: Signal<number> = BetterSignal.new()
 
-local connection = signal:Connect(function(points)
+local connection = signal:Connect(function(points: number)
     someExternalValue += points
     print('Points Added:', points) -- Output: 7
 end)
@@ -39,17 +40,17 @@ When instantiating a new Signal object, pass in the type annotations for fired a
 local signal: Signal<number, string, thread> = BetterSignal.new()
 ```
 
-**Connection Firing**
+**Changes to Connections**
 
-Connections can individually be fired by using `:Fire()` (on a connection)
+Connections now have a read-only bool `.Connected` property
+
+Individual connections can be fired by using `:Fire()`, which is what Signal internally uses for its `:Fire()` method
 
 ```lua
 connection:Fire(someArgs..) -- this will only fire this singular connection
 ```
 
-**Reconnecting**
-
-BetterSignal allows for disconnected Signals to be reconnected to their Signal object using `:Reconnect()`
+BetterSignal also allows for disconnected Connections to be reconnected to their Signal object using `:Reconnect()`
 
 ```lua
 connection:Disconnect()
