@@ -39,6 +39,14 @@ When instantiating a new Signal object, pass in the type annotations for fired a
 local signal: Signal<number, string, thread> = BetterSignal.new()
 ```
 
+**Connection Firing**
+
+Connections can individually be fired by using `:Fire()` (on a connection)
+
+```lua
+connection:Fire(someArgs..) -- this will only fire this singular connection
+```
+
 **Reconnecting**
 
 BetterSignal allows for disconnected Signals to be reconnected to their Signal object using `:Reconnect()`
