@@ -44,6 +44,12 @@ local signal: Signal<number, string, thread> = BetterSignal.new()
 
 Connections now have a read-only bool `.Connected` property
 
+```lua
+print(connection.Connected) -- Output: true
+connection:Disconnect()
+print(connection.Connected) -- Output: false
+```
+
 Individual connections can be fired by using `:Fire()`, which is what Signal internally uses for its `:Fire()` method
 
 ```lua
@@ -62,13 +68,15 @@ connection:Reconnect()
 
 A new `:Destroy()` method has been added to both the Connection and Signal objects
 
-Calling `:Destroy()` on a connection will also disconnect it from its signal, and calling `:Destroy()` on a signal will destroy all of its connections
+Calling `:Destroy()` on a connection will also disconnect it from its signal, and calling `:Destroy()` on a signal will destroy all of its connections. 
+
+**Note:** `:Destroy()` internally uses `table.clear`
 
 ```lua
 signal:Destroy() -- goodbye
 ```
 
-**Notes**
+**Misc**
 
 BetterSignal uses --optimize 2 and --native attributes
 
