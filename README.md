@@ -78,6 +78,8 @@ signal:Destroy() -- goodbye
 
 **Misc**
 
+After benchmarking both Good and Better Signal modules it appears both have similar performance
+
 BetterSignal uses --optimize 2 and --native attributes
 
 ⚠️ When yielding a thread with `:Wait()`, if Wait's connection is disconnected, the affected thread will forever yield

@@ -95,12 +95,11 @@ function Connection:Disconnect()
 		self.Signal.ConnectionHead = self.Next
 	else
 		local connection = self.Signal.ConnectionHead
-		while connection do
-			if connection.Next == self then
-				connection.Next = self.Next
-				break
-			end
+		while connection and connection.Next ~= self do
 			connection = connection.Next
+		end
+		if connection then
+			connection.Next = self.Next
 		end
 	end
 end
