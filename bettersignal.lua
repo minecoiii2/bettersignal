@@ -5,6 +5,8 @@
 -- ** Type Structs ** --
 
 export type Connection<T...> = {
+	__type: 'Connection':
+
 	Connected: boolean,
 	
 	Signal: Signal<T...>,
@@ -17,6 +19,8 @@ export type Connection<T...> = {
 }
 
 export type Signal<T...> = {
+	__type: 'Signal',
+
 	Fire: (Signal<T...>, T...) -> nil,
 	
 	Connect: (Signal<T...>, (T...) -> any) -> Connection<T...>,
@@ -66,6 +70,7 @@ Connection.__index = Connection
 
 function Connection.new(signal, callback)
 	return setmetatable({
+		__type = 'Connection',
 		Connected = false,
 		
 		Signal = signal,
@@ -132,6 +137,7 @@ Signal.__index = Signal
 
 function Signal.new<T...>(): Signal<T...>
 	return setmetatable({
+		__type = 'Signal',
 		ConnectionHead = nil,
 	}, Signal) :: any
 end

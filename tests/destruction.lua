@@ -1,3 +1,4 @@
+--@module ./../bettersignal
 local BetterSignal = require(script.Parent)
 type Signal<T...> = BetterSignal.Signal<T...>
 
