@@ -5,7 +5,7 @@
 -- ** Type Structs ** --
 
 export type Connection<T...> = {
-	__type: 'Connection':
+	__type: 'Connection',
 
 	Connected: boolean,
 	
